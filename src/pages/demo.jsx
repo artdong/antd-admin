@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import { Form, Select, InputNumber, DatePicker, Switch, Slider, Button } from 'antd';
-import './App.css';
 
 const { Option } = Select;
 
-class App extends Component {
+class Demo extends Component {
     render() {
         return (<Form style={{ marginTop: 32 }}>
             <Form.Item
@@ -61,4 +60,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Demo;
