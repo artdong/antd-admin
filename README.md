@@ -1,6 +1,5 @@
 # antd-admin
 
-<<<<<<< HEAD
 ## Env
 
 node>=8
@@ -49,8 +48,3 @@ npm run build (打包发布)
 
 
 
-=======
-## env
-
-node>=8
->>>>>>> origin/master
