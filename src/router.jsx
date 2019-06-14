@@ -13,6 +13,7 @@ import { LocaleProvider } from 'antd';
 import Layout from './pages/layout.jsx'; //PC框架
 import NotFound from './pages/not_found.jsx'; //404
 import Demo from './pages/demo.jsx';
+import User from './pages/user_list.jsx';
 
 export default (
     <LocaleProvider locale={zh_CN}>
@@ -21,6 +22,7 @@ export default (
                 <Route path="client" component={Layout}>
                     <IndexRoute component={NotFound} />
                     <Route path="demo" component={Demo} />
+                    <Route path="user" component={User} />
                     <Route path="*" component={NotFound} />
                 </Route>
             </Router>
