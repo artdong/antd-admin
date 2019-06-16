@@ -1,5 +1,5 @@
 /**
- * 用户列表
+ * 英雄列表
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -22,17 +22,106 @@ function propMap(state, ownProps) {
 let users = [{
     key: 0,
     userId: 1,
-    userName: 'zhangsan'
+    userName: '诸葛亮',
+    gender: '男',
+    age: 26,
+    createTime: '2019-06-16'
 },
 {
     key: 1,
     userId: 2,
-    userName: 'lisi'
+    userName: '妲己',
+    gender: '女',
+    age: 18,
+    createTime: '2019-06-16'
 },
 {
     key: 2,
     userId: 3,
-    userName: 'wangwu'
+    userName: '赵云',
+    gender: '男',
+    age: 23,
+    createTime: '2019-06-16'
+},
+{
+    key: 3,
+    userId: 4,
+    userName: '甄姬',
+    gender: '女',
+    age: 16,
+    createTime: '2019-06-16'
+},
+{
+    key: 4,
+    userId: 5,
+    userName: '张飞',
+    gender: '男',
+    age: 25,
+    createTime: '2019-06-16'
+},
+{
+    key: 5,
+    userId: 6,
+    userName: '蔡文姬',
+    gender: '女',
+    age: 18,
+    createTime: '2019-06-16'
+},
+{
+    key: 6,
+    userId: 7,
+    userName: '阿轲',
+    gender: '男',
+    age: 23,
+    createTime: '2019-06-16'
+},
+{
+    key: 7,
+    userId: 8,
+    userName: '嫦娥',
+    gender: '女',
+    age: 18,
+    createTime: '2019-06-16'
+},
+{
+    key: 8,
+    userId: 9,
+    userName: '吕布',
+    gender: '男',
+    age: 23,
+    createTime: '2019-06-16'
+},
+{
+    key: 9,
+    userId: 10,
+    userName: '芈月',
+    gender: '女',
+    age: 18,
+    createTime: '2019-06-16'
+},
+{
+    key: 10,
+    userId: 11,
+    userName: '凯',
+    gender: '男',
+    age: 23,
+    createTime: '2019-06-16'
+},
+{
+    key: 11,
+    userId: 12,
+    userName: '公孙离',
+    gender: '女',
+    age: 18,
+    createTime: '2019-06-16'
+},
+{
+    key: 12,
+    userId: 13,
+    userName: '孙悟空',
+    gender: '男',
+    age: 23,
+    createTime: '2019-06-16'
 }];
 
 class UserList extends Component {
@@ -75,14 +164,13 @@ class UserList extends Component {
             <Spin spinning={loadingForm}>
                 <Row className="m-b">
                     <Col span={24}>
-                        <h1 className="pull-left">用户列表</h1>
+                        <h1 className="pull-left">英雄列表</h1>
                     </Col>
                 </Row>
                 <UserListSearchForm onSubmit={this.handleSearch} defaultValue={getQuery(routing)}/>
                 <UserListTable 
                     className="m-t-lg"
                     dataSource={users}
-                    pagination={false}
                     onChange={this.handleTableChange}
                 />
             </Spin>
