@@ -25,7 +25,7 @@ class UserList extends Component {
         super(props);
         this.handleGetList = this.handleGetList.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
-        this.handleTableChange = this.handleTableChange.bind(this);
+        // this.handleTableChange = this.handleTableChange.bind(this);
     }
 
     componentDidMount() {
@@ -55,12 +55,12 @@ class UserList extends Component {
         }));
     }
 
-    handleTableChange(page, filters) {
-        this.handleGetList(Object.assign( page ? {
-            page: page.current,
-            pageSize: page.pageSize
-        } : {}, filters));
-    }
+    // handleTableChange(page, filters) {
+    //     this.handleGetList(Object.assign( page ? {
+    //         page: page.current,
+    //         pageNum: page.pageSize
+    //     } : {}, filters));
+    // }
 
     render() {
         const { routing, modal, users } = this.props;
@@ -76,7 +76,6 @@ class UserList extends Component {
                 <UserListTable 
                     className="m-t-lg"
                     dataSource={users.content}
-                    onChange={this.handleTableChange}
                 />
             </Spin>
         );
