@@ -80,6 +80,7 @@ class UserList extends Component {
                 </Row>
                 <UserListSearchForm onSubmit={this.handleSearch} defaultValue={getQuery(routing)}/>
                 <UserListTable 
+                    className="m-t-lg"
                     dataSource={users}
                     pagination={false}
                     onChange={this.handleTableChange}
