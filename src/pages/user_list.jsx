@@ -9,120 +9,16 @@ import { push } from 'react-router-redux';
 
 import UserListSearchForm from './../components/form/user_list_search_form.jsx';
 import UserListTable from './../components/table/user_list_table.jsx';
-import { getQuery, isObjEmpty, getPath, serialize, getPageData } from './../common/tool';
+import { getQuery, isObjEmpty, getPath, serialize } from './../common/tool';
+import { getUserList, cleanUserList} from './../actions/user';
 
 function propMap(state, ownProps) {
     return {
         modal: state.modal,
         routing: ownProps,
-        users: []
+        users: state.user || []
     };
 }
-
-let users = [{
-    key: 0,
-    userId: 1,
-    userName: '诸葛亮',
-    gender: '男',
-    age: 26,
-    createTime: '2019-06-16'
-},
-{
-    key: 1,
-    userId: 2,
-    userName: '妲己',
-    gender: '女',
-    age: 18,
-    createTime: '2019-06-16'
-},
-{
-    key: 2,
-    userId: 3,
-    userName: '赵云',
-    gender: '男',
-    age: 23,
-    createTime: '2019-06-16'
-},
-{
-    key: 3,
-    userId: 4,
-    userName: '甄姬',
-    gender: '女',
-    age: 16,
-    createTime: '2019-06-16'
-},
-{
-    key: 4,
-    userId: 5,
-    userName: '张飞',
-    gender: '男',
-    age: 25,
-    createTime: '2019-06-16'
-},
-{
-    key: 5,
-    userId: 6,
-    userName: '蔡文姬',
-    gender: '女',
-    age: 18,
-    createTime: '2019-06-16'
-},
-{
-    key: 6,
-    userId: 7,
-    userName: '阿轲',
-    gender: '男',
-    age: 23,
-    createTime: '2019-06-16'
-},
-{
-    key: 7,
-    userId: 8,
-    userName: '嫦娥',
-    gender: '女',
-    age: 18,
-    createTime: '2019-06-16'
-},
-{
-    key: 8,
-    userId: 9,
-    userName: '吕布',
-    gender: '男',
-    age: 23,
-    createTime: '2019-06-16'
-},
-{
-    key: 9,
-    userId: 10,
-    userName: '芈月',
-    gender: '女',
-    age: 18,
-    createTime: '2019-06-16'
-},
-{
-    key: 10,
-    userId: 11,
-    userName: '凯',
-    gender: '男',
-    age: 23,
-    createTime: '2019-06-16'
-},
-{
-    key: 11,
-    userId: 12,
-    userName: '公孙离',
-    gender: '女',
-    age: 18,
-    createTime: '2019-06-16'
-},
-{
-    key: 12,
-    userId: 13,
-    userName: '孙悟空',
-    gender: '男',
-    age: 23,
-    createTime: '2019-06-16'
-}];
 
 class UserList extends Component {
     constructor(props) {
@@ -136,10 +32,19 @@ class UserList extends Component {
         this.handleGetList();
     }
 
-    handleGetList(filters) { // 第二个参数为了确保选择其他业务线的时候清空查询参数避免参数冲突
+    componentWillUnmount() {
+        const { dispatch } = this.props;
+        dispatch(cleanUserList());
+    }
+
+    handleGetList(filters) {
         const {dispatch, routing} = this.props;
         const query = Object.assign({}, getQuery(routing), filters);
-        // dispatch(getStrictSelectionChanceList(query));
+        Object.keys(query).forEach((inx) => {
+            if (query[inx] === 'undefined' || query[inx] === undefined || query[inx] === null || query[inx] === '' || query[inx].length == 0)
+                delete query[inx];
+        });
+        dispatch(getUserList(query));
         if(!isObjEmpty(filters)) dispatch(push(getPath('/user/?' + serialize(query))));
     }
 
@@ -158,7 +63,7 @@ class UserList extends Component {
     }
 
     render() {
-        const { routing, modal } = this.props;
+        const { routing, modal, users } = this.props;
         const { loadingForm } = modal;
         return (
             <Spin spinning={loadingForm}>
@@ -170,7 +75,7 @@ class UserList extends Component {
                 <UserListSearchForm onSubmit={this.handleSearch} defaultValue={getQuery(routing)}/>
                 <UserListTable 
                     className="m-t-lg"
-                    dataSource={users}
+                    dataSource={users.content}
                     onChange={this.handleTableChange}
                 />
             </Spin>

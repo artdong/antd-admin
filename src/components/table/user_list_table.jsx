@@ -33,6 +33,11 @@ class UserListTable extends Component {
                 key: 'age'
             },
             {
+                title: '手机号',
+                dataIndex: 'tel',
+                key: 'tel'
+            },
+            {
                 title: '创建时间',
                 dataIndex: 'createTime',
                 key: 'createTime'

@@ -40,7 +40,7 @@ class UserListSearchForm extends Component {
                             {getFieldDecorator('userId', {
                                 initialValue: defaultValue.userId ? defaultValue.userId : ''
                             })(
-                                <Input />
+                                <Input allowClear/>
                             )}
                         </FormItem>
                     </Col>
@@ -52,7 +52,7 @@ class UserListSearchForm extends Component {
                             {getFieldDecorator('userName', {
                                 initialValue: defaultValue.userName ? defaultValue.userName : ''
                             })(
-                                <Input />
+                                <Input allowClear/>
                             )}
                         </FormItem>
                     </Col>
@@ -64,7 +64,7 @@ class UserListSearchForm extends Component {
                             {getFieldDecorator('gender', {
                                 initialValue: defaultValue.gender ? defaultValue.gender : ''
                             })(
-                                <Select>
+                                <Select allowClear>
                                     <Option value="">全部</Option>
                                     {getEnumsArray(UserEnums.gender).map((data, index) => {
                                         return (<Option value={data.value} key={index}>{data.text}</Option>);
@@ -83,7 +83,7 @@ class UserListSearchForm extends Component {
                             {getFieldDecorator('age', {
                                 initialValue: defaultValue.age ? defaultValue.age : ''
                             })(
-                                <Input />
+                                <Input allowClear/>
                             )}
                         </FormItem>
                     </Col>
@@ -95,7 +95,7 @@ class UserListSearchForm extends Component {
                             {getFieldDecorator('tel', {
                                 initialValue: defaultValue.tel ? defaultValue.tel : ''
                             })(
-                                <Input />
+                                <Input allowClear/>
                             )}
                         </FormItem>
                     </Col>
@@ -109,6 +109,7 @@ class UserListSearchForm extends Component {
                             })(
                                 <RangePicker
                                     format="YYYY-MM-DD"
+                                    allowClear
                                 />
                             )}
                         </FormItem>
