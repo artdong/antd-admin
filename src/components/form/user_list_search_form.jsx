@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Form, Input, Select, Button } from 'antd';
+import { Row, Col, Form, Input, DatePicker, Select, Button } from 'antd';
 
 import { formItemLayout } from '../../common/const';
 import { getEnumsArray } from '../../common/tool';
@@ -8,6 +8,8 @@ import UserEnums from '../../enums/user';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
+
+const { RangePicker } = DatePicker;
 
 class UserListSearchForm extends Component {
     constructor(props) {
@@ -105,13 +107,15 @@ class UserListSearchForm extends Component {
                             {getFieldDecorator('createTime', {
                                 initialValue: defaultValue.createTime ? defaultValue.createTime : ''
                             })(
-                                <Input />
+                                <RangePicker
+                                    format="YYYY-MM-DD"
+                                />
                             )}
                         </FormItem>
                     </Col>
                 </Row>
                 <Row>
-                    <div className="text-right">
+                    <div className="pull-right">
                         <Button className="m-l" type="primary" htmlType="submit" loading={false}>查询</Button>
                     </div>
                 </Row>
