@@ -30,7 +30,7 @@ class UserListSearchForm extends Component {
         const { form, defaultValue } = this.props;
         const { getFieldDecorator } = form;
         return (
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit} className="user-search-group">
                 <Row className="m-b">
                     <Col span={8}>
                         <FormItem

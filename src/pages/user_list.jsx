@@ -74,7 +74,6 @@ class UserList extends Component {
                 </Row>
                 <UserListSearchForm onSubmit={this.handleSearch} defaultValue={getQuery(routing)}/>
                 <UserListTable 
-                    className="m-t-lg"
                     dataSource={users.content}
                 />
             </Spin>
