@@ -108,7 +108,8 @@ class UserListSearchForm extends Component {
                                 initialValue: defaultValue.createTime ? defaultValue.createTime : ''
                             })(
                                 <RangePicker
-                                    format="YYYY-MM-DD"
+                                    className="time-width" 
+                                    showTime
                                     allowClear
                                 />
                             )}
