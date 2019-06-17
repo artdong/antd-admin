@@ -1,6 +1,5 @@
 # antd-admin
 
-<<<<<<< HEAD
 ## Env
 
 node>=8
@@ -28,6 +27,10 @@ node>=8
 
 react16 + antd + react-router + redux
 
+## 效果预览（不定时更新）
+
+![动态图](https://github.com/artdong/antd-admin/blob/master/src/images/ant-admin.gif?raw=true)
+
 
 ## 项目运行
 
@@ -49,8 +52,3 @@ npm run build (打包发布)
 
 
 
-=======
-## env
-
-node>=8
->>>>>>> origin/master
