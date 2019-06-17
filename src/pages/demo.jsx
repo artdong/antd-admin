@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import { Form, Select, InputNumber, DatePicker, Switch, Slider, Button } from 'antd';
+import { watermark } from './../common/watermark';
 
 const { Option } = Select;
 
 class Demo extends Component {
+    constructor(props) {
+        super(props);
+        const date = new Date();
+        watermark({watermark_txt0: 'admin ', watermark_txt2: date.toLocaleString()});
+    }
     render() {
         return (<Form style={{ marginTop: 32 }}>
             <Form.Item
