@@ -27,6 +27,10 @@ node>=8
 
 react16 + antd + react-router + redux
 
+## 效果预览（不定时更新）
+
+![动态图](https://github.com/artdong/antd-admin/blob/master/src/images/ant-admin.gif?raw=true)
+
 
 ## 项目运行
 
