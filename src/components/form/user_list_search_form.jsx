@@ -75,7 +75,7 @@ class UserListSearchForm extends Component {
                     </Col>
                 </Row>
                 <Row className="m-b">
-                   <Col span={8}>
+                    <Col span={8}>
                         <FormItem
                             label='年龄'
                             {...formItemLayout}

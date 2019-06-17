@@ -84,7 +84,8 @@ class UserList extends Component {
 UserList.propTypes = {
     dispatch: PropTypes.func.isRequired,
     routing: PropTypes.object.isRequired,
-    modal: PropTypes.object.isRequired
+    modal: PropTypes.object.isRequired,
+    users: PropTypes.object
 };
 
 export default connect(propMap)(UserList);

@@ -14,9 +14,9 @@ const INIT_STATE = {
 
 export default function(state = INIT_STATE, action) {
     switch (action.type) {
-        case UPDATE_MODAL:
-            return Object.assign({}, state, action.data);
-        default:
-            return state;
+    case UPDATE_MODAL:
+        return Object.assign({}, state, action.data);
+    default:
+        return state;
     }
 }
