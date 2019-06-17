@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Table } from 'antd';
+import UserEnums from '../../enums/user';
 
 class UserListTable extends Component {
     constructor(props) {
@@ -25,7 +26,10 @@ class UserListTable extends Component {
             {
                 title: '性别',
                 dataIndex: 'gender',
-                key: 'gender'
+                key: 'gender',
+                render: (value) => {
+                    return UserEnums.gender[value];
+                }
             },
             {
                 title: '年龄',
