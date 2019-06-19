@@ -11,7 +11,7 @@ import UserListSearchForm from './../components/form/user_list_search_form.jsx';
 import UserAdd from './../components/form/user_add_form.jsx';
 import UserListTable from './../components/table/user_list_table.jsx';
 import { getQuery, isObjEmpty, getPath, serialize } from './../common/tool';
-import { getUserList, cleanUserList} from './../actions/user';
+import { getUserList, cleanUserList, addUser} from './../actions/user';
 
 function propMap(state, ownProps) {
     return {
@@ -53,6 +53,13 @@ class UserList extends Component {
         if(!isObjEmpty(filters)) dispatch(push(getPath('/user/?' + serialize(query))));
     }
 
+    // handleTableChange(page, filters) {
+    //     this.handleGetList(Object.assign( page ? {
+    //         page: page.current,
+    //         pageNum: page.pageSize
+    //     } : {}, filters));
+    // }
+
     handleSearch(data) {
         this.handleGetList(Object.assign({}, data, {
             page: 1,
@@ -72,12 +79,16 @@ class UserList extends Component {
         });
     }
 
-    // handleTableChange(page, filters) {
-    //     this.handleGetList(Object.assign( page ? {
-    //         page: page.current,
-    //         pageNum: page.pageSize
-    //     } : {}, filters));
-    // }
+    handleAddUser(data) {
+        const { dispatch } = this.props;
+        const param = data;
+        const callback = () => {
+            this.setState({ modalType: '' }, () => {
+                this.handleGetList();
+            }); 
+        };
+        dispatch(addUser(param, callback));
+    }
 
     render() {
         const { routing, modal, users } = this.props;

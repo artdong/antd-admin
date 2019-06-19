@@ -1,4 +1,4 @@
-import { message } from 'antd';
+// import { message } from 'antd';
 import { modalUpdate } from './modal';
 import { users } from './../common/db';
 export const CLEAN_USERLIST = 'CLEAN_USERLIST';
@@ -54,21 +54,72 @@ export function addUser(query, callback) {
         dispatch(modalUpdate({
             loadingForm: true
         }));
-        fetch('add-user', query, 'POST')
-            .then(function(res) {
-                dispatch(modalUpdate({
-                    loadingForm: false
-                }));
-                if(res.data) {
-                    message.success('操作成功！');
-                    callback && callback();
-                } else message.error('操作失败！');
-            }).catch(function(err) {
-                message.error(err.message);
-                dispatch(modalUpdate({
-                    loadingForm: false
-                }));
-            });
+        let userList = users;
+        userList.push(query);
+        dispatch(updateUserList(userList));
+        dispatch(modalUpdate({
+            loadingTable: false
+        }));
+        callback && callback();
+        // fetch('add-user', query, 'POST')
+        //     .then(function(res) {
+        //         dispatch(modalUpdate({
+        //             loadingForm: false
+        //         }));
+        //         if(res.data) {
+        //             message.success('操作成功！');
+        //             callback && callback();
+        //         } else message.error('操作失败！');
+        //     }).catch(function(err) {
+        //         message.error(err.message);
+        //         dispatch(modalUpdate({
+        //             loadingForm: false
+        //         }));
+        //     });
+    };
+}
+
+/**
+ * 编辑用户
+ */
+export function updateUser(query, callback) {
+    return function(dispatch) {
+        dispatch(modalUpdate({
+            loadingForm: true
+        }));
+        let userList = users.filter(item => {
+            return item.userId != query.userId;
+        });
+        let user = users.filter((p) => {
+            return p.userId == query.userId;
+        });
+        user = Object.assign({}, user, query);
+        userList.unshift(user[0]);
+        dispatch(updateUserList(userList));
+        dispatch(modalUpdate({
+            loadingTable: false
+        }));
+        callback && callback();
+    };
+}
+
+/**
+ * 删除用户
+ */
+export function delUser(query, callback) {
+    return function(dispatch) {
+        dispatch(modalUpdate({
+            loadingForm: true
+        }));
+        let userList = users;
+        let newUserList = userList.filter(item => {
+            return item.userId != query.userId;
+        });
+        dispatch(updateUserList(newUserList));
+        dispatch(modalUpdate({
+            loadingTable: false
+        }));
+        callback && callback();
     };
 }
 
