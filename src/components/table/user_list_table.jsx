@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Table } from 'antd';
+import { Table, Divider } from 'antd';
 import UserEnums from '../../enums/user';
 
 class UserListTable extends Component {
@@ -45,6 +45,17 @@ class UserListTable extends Component {
                 title: '创建时间',
                 dataIndex: 'createTime',
                 key: 'createTime'
+            },
+            {
+                title: '操作',
+                key: 'action',
+                render: (text, record) => (
+                    <span>
+                        <a href="javascript:;">编辑 {record.name}</a>
+                        <Divider type="vertical" />
+                        <a href="javascript:;">删除</a>
+                    </span>
+                ),
             }
         ];
 

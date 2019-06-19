@@ -4,10 +4,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Row, Col, Spin } from 'antd';
+import { Row, Col, Spin, Button, Modal } from 'antd';
 import { push } from 'react-router-redux';
 
 import UserListSearchForm from './../components/form/user_list_search_form.jsx';
+import UserAdd from './../components/form/user_add_form.jsx';
 import UserListTable from './../components/table/user_list_table.jsx';
 import { getQuery, isObjEmpty, getPath, serialize } from './../common/tool';
 import { getUserList, cleanUserList} from './../actions/user';
@@ -23,8 +24,12 @@ function propMap(state, ownProps) {
 class UserList extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            modalType: ''
+        };
         this.handleGetList = this.handleGetList.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleShowModal = this.handleShowModal.bind(this);
         // this.handleTableChange = this.handleTableChange.bind(this);
     }
 
@@ -55,6 +60,18 @@ class UserList extends Component {
         }));
     }
 
+    handleShowModal(type) {
+        this.setState({
+            modalType: type
+        });
+    }
+
+    handleCloseModal() {
+        this.setState({
+            modalType: ''
+        });
+    }
+
     // handleTableChange(page, filters) {
     //     this.handleGetList(Object.assign( page ? {
     //         page: page.current,
@@ -65,17 +82,33 @@ class UserList extends Component {
     render() {
         const { routing, modal, users } = this.props;
         const { loadingForm } = modal;
+        const { modalType } = this.state;
         return (
             <Spin spinning={loadingForm}>
                 <Row className="m-b">
                     <Col span={24}>
                         <h1 className="pull-left">英雄列表</h1>
+                        <div className="text-right">
+                            <Button type="primary" ghost className="m-l" onClick={() => {this.handleShowModal('addUser');}}>新增英雄</Button>
+                        </div>
                     </Col>
                 </Row>
                 <UserListSearchForm onSubmit={this.handleSearch} defaultValue={getQuery(routing)}/>
                 <UserListTable 
                     dataSource={users.content}
                 />
+                <Modal
+                    visible={modalType === 'addUser' ? true : false}
+                    title='新增英雄'
+                    width={700}
+                    footer={null}
+                    onCancel={this.handleCloseModal}
+                >
+                    {modalType === 'addUser' 
+                        ?   <UserAdd /> 
+                        : null
+                    }
+                </Modal>
             </Spin>
         );
     }
