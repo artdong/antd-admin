@@ -6,7 +6,6 @@ import { formItemLayout } from '../../common/const';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const TextArea = Input.TextArea;
 
 class UserAdd extends Component {
     constructor(props) {
