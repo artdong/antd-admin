@@ -5,7 +5,7 @@ export let users = [{
     gender: 0,
     age: 26,
     tel: 15023712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 1,
@@ -14,7 +14,7 @@ export let users = [{
     gender: 1,
     age: 17,
     tel: 123456789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 2,
@@ -23,7 +23,7 @@ export let users = [{
     gender: 0,
     age: 23,
     tel: 13523712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 3,
@@ -32,7 +32,7 @@ export let users = [{
     gender: 1,
     age: 16,
     tel: 17723712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 4,
@@ -41,7 +41,7 @@ export let users = [{
     gender: 0,
     age: 25,
     tel: 19223712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 5,
@@ -50,7 +50,7 @@ export let users = [{
     gender: 1,
     age: 18,
     tel: 15123712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 6,
@@ -59,7 +59,7 @@ export let users = [{
     gender: 0,
     age: 23,
     tel: 111123712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 7,
@@ -68,7 +68,7 @@ export let users = [{
     gender: 1,
     age: 16,
     tel: 11923712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 8,
@@ -77,7 +77,7 @@ export let users = [{
     gender: 0,
     age: 23,
     tel: 11023712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 9,
@@ -86,7 +86,7 @@ export let users = [{
     gender: 1,
     age: 19,
     tel: 17923712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 10,
@@ -95,7 +95,7 @@ export let users = [{
     gender: 0,
     age: 23,
     tel: 19923712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 11,
@@ -104,7 +104,7 @@ export let users = [{
     gender: 1,
     age: 15,
     tel: 19023712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 },
 {
     key: 12,
@@ -113,5 +113,5 @@ export let users = [{
     gender: 0,
     age: 23,
     tel: 18823712789,
-    createTime: '2019-06-16'
+    createTime: '2019-06-16 10:10:10'
 }];

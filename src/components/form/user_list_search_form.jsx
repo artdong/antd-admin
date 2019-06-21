@@ -108,7 +108,7 @@ class UserListSearchForm extends Component {
                                 initialValue: defaultValue.createTime ? defaultValue.createTime : ''
                             })(
                                 <RangePicker
-                                    className="time-width" 
+                                    className="wd-ten-percent" 
                                     showTime
                                     allowClear
                                 />

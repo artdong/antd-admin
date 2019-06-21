@@ -120,3 +120,17 @@ export function isObjEmpty(obj) {
 
     return true;
 }
+
+export function formatDate(date) {//时间转化
+    let seperator1 = '-';
+    let seperator2 = ':';
+    let month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+    let strDate = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    let strHours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    let strMinutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    let strSeconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+    let currentdate = date.getFullYear() + seperator1  + month  + seperator1  + strDate
+			+ ' '  + strHours  + seperator2  + strMinutes
+			+ seperator2 + strSeconds;
+    return currentdate;
+}

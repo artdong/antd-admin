@@ -52,9 +52,11 @@ export function getUserList(query) {
 export function addUser(query, callback) {
     return function(dispatch) {
         dispatch(modalUpdate({
-            loadingForm: true
+            loadingTable: true
         }));
         let userList = users;
+        query.key = userList.length;
+        query.userId = userList.length + 1;
         userList.push(query);
         dispatch(updateUserList(userList));
         dispatch(modalUpdate({
@@ -85,16 +87,16 @@ export function addUser(query, callback) {
 export function updateUser(query, callback) {
     return function(dispatch) {
         dispatch(modalUpdate({
-            loadingForm: true
+            loadingTable: true
         }));
         let userList = users.filter(item => {
-            return item.userId != query.userId;
+            return item.userId !== query.userId;
         });
         let user = users.filter((p) => {
-            return p.userId == query.userId;
+            return p.userId === query.userId;
         });
         user = Object.assign({}, user, query);
-        userList.unshift(user[0]);
+        userList.unshift(user);
         dispatch(updateUserList(userList));
         dispatch(modalUpdate({
             loadingTable: false
@@ -109,11 +111,11 @@ export function updateUser(query, callback) {
 export function delUser(query, callback) {
     return function(dispatch) {
         dispatch(modalUpdate({
-            loadingForm: true
+            loadingTable: true
         }));
         let userList = users;
         let newUserList = userList.filter(item => {
-            return item.userId != query.userId;
+            return item.userId !== query.userId;
         });
         dispatch(updateUserList(newUserList));
         dispatch(modalUpdate({
