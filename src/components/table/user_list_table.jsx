@@ -12,6 +12,7 @@ class UserListTable extends Component {
         super(props);
     }
     render() {
+        const { handleShowModal, handleDelUser } = this.props;
         let columns = [
             {
                 title: '用户ID',
@@ -51,9 +52,9 @@ class UserListTable extends Component {
                 key: 'action',
                 render: (text, record) => (
                     <span>
-                        <a href="javascript:;">编辑 {record.name}</a>
+                        <a href="javascript:;" onClick={()=>{handleShowModal('editUser', record);}}>编辑 {record.name}</a>
                         <Divider type="vertical" />
-                        <a href="javascript:;">删除</a>
+                        <a href="javascript:;" onClick={()=>{handleDelUser(record);}}>删除</a>
                     </span>
                 ),
             }
@@ -73,6 +74,8 @@ class UserListTable extends Component {
 }
 
 UserListTable.propTypes = {
-    dataSource: PropTypes.array
+    dataSource: PropTypes.array,
+    handleShowModal: PropTypes.func,
+    handleDelUser: PropTypes.func
 };
 export default connect()(UserListTable);

@@ -10,8 +10,8 @@ import { push } from 'react-router-redux';
 import UserListSearchForm from './../components/form/user_list_search_form.jsx';
 import UserAdd from './../components/form/user_add_form.jsx';
 import UserListTable from './../components/table/user_list_table.jsx';
-import { getQuery, isObjEmpty, getPath, serialize } from './../common/tool';
-import { getUserList, cleanUserList, addUser} from './../actions/user';
+import { getQuery, isObjEmpty, getPath, serialize, formatDate } from './../common/tool';
+import { getUserList, cleanUserList, addUser, updateUser, delUser} from './../actions/user';
 
 function propMap(state, ownProps) {
     return {
@@ -25,12 +25,16 @@ class UserList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalType: ''
+            modalType: '', 
+            curUser: {}
         };
         this.handleGetList = this.handleGetList.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleShowModal = this.handleShowModal.bind(this);
-        // this.handleTableChange = this.handleTableChange.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleAddUser = this.handleAddUser.bind(this);
+        this.handleUpdateUser = this.handleUpdateUser.bind(this);
+        this.handleDelUser = this.handleDelUser.bind(this);
     }
 
     componentDidMount() {
@@ -46,7 +50,7 @@ class UserList extends Component {
         const {dispatch, routing} = this.props;
         const query = Object.assign({}, getQuery(routing), filters);
         Object.keys(query).forEach((inx) => {
-            if (query[inx] === 'undefined' || query[inx] === undefined || query[inx] === null || query[inx] === '' || query[inx].length == 0)
+            if (query[inx] === 'undefined' || query[inx] === undefined || query[inx] === null || query[inx] === '' || query[inx].length === 0)
                 delete query[inx];
         });
         dispatch(getUserList(query));
@@ -67,9 +71,10 @@ class UserList extends Component {
         }));
     }
 
-    handleShowModal(type) {
+    handleShowModal(type, record) {
         this.setState({
-            modalType: type
+            modalType: type,
+            curUser: record
         });
     }
 
@@ -81,19 +86,43 @@ class UserList extends Component {
 
     handleAddUser(data) {
         const { dispatch } = this.props;
-        const param = data;
+        const params = data;
         const callback = () => {
             this.setState({ modalType: '' }, () => {
                 this.handleGetList();
             }); 
         };
-        dispatch(addUser(param, callback));
+        let createTime = formatDate(new Date());
+        params.createTime = createTime;
+        dispatch(addUser(params, callback));
+    }
+
+    handleUpdateUser(data) {
+        const { dispatch } = this.props;
+        const params = data;
+        const callback = () => {
+            this.setState({ modalType: '' }, () => {
+                this.handleGetList();
+            }); 
+        };
+        dispatch(updateUser(params, callback));
+    }
+
+    handleDelUser(data) {
+        const { dispatch } = this.props;
+        const params = data;
+        const callback = () => {
+            this.setState({ modalType: '' }, () => {
+                this.handleGetList();
+            }); 
+        };
+        dispatch(delUser(params, callback));
     }
 
     render() {
         const { routing, modal, users } = this.props;
         const { loadingForm } = modal;
-        const { modalType } = this.state;
+        const { modalType, curUser } = this.state;
         return (
             <Spin spinning={loadingForm}>
                 <Row className="m-b">
@@ -107,6 +136,8 @@ class UserList extends Component {
                 <UserListSearchForm onSubmit={this.handleSearch} defaultValue={getQuery(routing)}/>
                 <UserListTable 
                     dataSource={users.content}
+                    handleShowModal={this.handleShowModal}
+                    handleDelUser={this.handleDelUser}
                 />
                 <Modal
                     visible={modalType === 'addUser' ? true : false}
@@ -116,7 +147,19 @@ class UserList extends Component {
                     onCancel={this.handleCloseModal}
                 >
                     {modalType === 'addUser' 
-                        ?   <UserAdd /> 
+                        ?   <UserAdd onCloseModal={this.handleCloseModal} onSubmit={this.handleAddUser}/> 
+                        : null
+                    }
+                </Modal>
+                <Modal
+                    visible={modalType === 'editUser' ? true : false}
+                    title='编辑英雄'
+                    width={700}
+                    footer={null}
+                    onCancel={this.handleCloseModal}
+                >
+                    {modalType === 'editUser' 
+                        ?   <UserAdd onCloseModal={this.handleCloseModal} onSubmit={this.handleUpdateUser} userInfo={curUser}/> 
                         : null
                     }
                 </Modal>
