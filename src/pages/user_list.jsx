@@ -35,6 +35,7 @@ class UserList extends Component {
         this.handleAddUser = this.handleAddUser.bind(this);
         this.handleUpdateUser = this.handleUpdateUser.bind(this);
         this.handleDelUser = this.handleDelUser.bind(this);
+        // this.handleTableChange = this.handleTableChange.bind(this);
     }
 
     componentDidMount() {
