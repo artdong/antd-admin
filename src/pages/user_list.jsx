@@ -106,6 +106,8 @@ class UserList extends Component {
                 this.handleGetList();
             }); 
         };
+        let createTime = formatDate(new Date());
+        params.createTime = createTime;
         dispatch(updateUser(params, callback));
     }
 
