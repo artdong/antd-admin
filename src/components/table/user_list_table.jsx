@@ -74,7 +74,6 @@ class UserListTable extends Component {
 }
 
 UserListTable.propTypes = {
-    dataSource: PropTypes.array,
     handleShowModal: PropTypes.func,
     handleDelUser: PropTypes.func
 };
