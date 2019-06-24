@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Form, Input, DatePicker, Select, Button } from 'antd';
+import { Row, Col, Form, Input, DatePicker, Select, Button, Icon } from 'antd';
+import moment from 'moment';
 
 import { formItemLayout } from '../../common/const';
 import { getEnumsArray } from '../../common/tool';
@@ -14,6 +15,9 @@ const { RangePicker } = DatePicker;
 class UserListSearchForm extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            moreOption: false
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -29,6 +33,7 @@ class UserListSearchForm extends Component {
     render() {
         const { form, defaultValue } = this.props;
         const { getFieldDecorator } = form;
+        const { moreOption } = this.state;
         return (
             <Form onSubmit={this.handleSubmit} className="user-search-group">
                 <Row className="m-b">
@@ -77,6 +82,23 @@ class UserListSearchForm extends Component {
                 <Row className="m-b">
                     <Col span={8}>
                         <FormItem
+                            label='角色'
+                            {...formItemLayout}
+                        >
+                            {getFieldDecorator('role', {
+                                initialValue: defaultValue.role ? defaultValue.role : ''
+                            })(
+                                <Select allowClear>
+                                    <Option value="">全部</Option>
+                                    {getEnumsArray(UserEnums.roles).map((data, index) => {
+                                        return (<Option value={data.value} key={index}>{data.text}</Option>);
+                                    })}
+                                </Select>
+                            )}
+                        </FormItem>
+                    </Col>
+                    <Col span={8}>
+                        <FormItem
                             label='年龄'
                             {...formItemLayout}
                         >
@@ -99,25 +121,37 @@ class UserListSearchForm extends Component {
                             )}
                         </FormItem>
                     </Col>
-                    <Col span={8}>
-                        <FormItem
-                            label='创建时间'
-                            {...formItemLayout}
-                        >
-                            {getFieldDecorator('createTime', {
-                                initialValue: defaultValue.createTime ? defaultValue.createTime : ''
-                            })(
-                                <RangePicker
-                                    className="wd-ten-percent" 
-                                    showTime
-                                    allowClear
-                                />
-                            )}
-                        </FormItem>
-                    </Col>
                 </Row>
+                {
+                    moreOption ? <Row className="m-b">
+                        <Col span={8}>
+                            <FormItem
+                                label='创建时间'
+                                {...formItemLayout}
+                            >
+                                {getFieldDecorator('createTime', {
+                                    initialValue: defaultValue.createTime ? defaultValue.createTime : ''
+                                })(
+                                    <RangePicker
+                                        className="wd-ten-percent" 
+                                        allowClear
+                                        showTime={{
+                                            hideDisabledOptions: true,
+                                            defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],
+                                        }}
+                                    />
+                                )}
+                            </FormItem>
+                        </Col>
+                    </Row> : null
+                }
                 <Row>
                     <div className="pull-right">
+                        <Button className="m-r-sm" onClick={() => {
+                            this.setState({
+                                moreOption: !moreOption
+                            });
+                        }}><span className="p-r-sm">更多筛选条件</span>{moreOption ? <Icon type="up" /> : <Icon type="down" />}</Button>
                         <Button className="m-l" type="primary" htmlType="submit" loading={false}>查询</Button>
                     </div>
                 </Row>

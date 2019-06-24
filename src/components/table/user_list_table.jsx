@@ -41,6 +41,14 @@ class UserListTable extends Component {
                 }
             },
             {
+                title: '角色',
+                dataIndex: 'role',
+                key: 'role',
+                render: (value) => {
+                    return UserEnums.roles[value];
+                }
+            },
+            {
                 title: '年龄',
                 dataIndex: 'age',
                 key: 'age'

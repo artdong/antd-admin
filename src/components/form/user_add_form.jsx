@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Row, Col, Form, Input, Select, Button, InputNumber } from 'antd';
 
 import { formItemLayout } from '../../common/const';
+import { getEnumsArray } from '../../common/tool';
+import UserEnums from '../../enums/user';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -80,6 +82,25 @@ class UserAdd extends Component {
                                     <Option value=''>请选择</Option>
                                     <Option value={0}>男</Option>
                                     <Option value={1}>女</Option>
+                                </Select>
+                            )}
+                        </FormItem>
+                    </Col>
+                </Row>
+                <Row className="m-b">
+                    <Col span={24}>
+                        <FormItem
+                            label='角色'
+                            {...formItemLayout}
+                        >
+                            {getFieldDecorator('role', {
+                                initialValue: userInfo && userInfo.role >= 0 ? userInfo.role.toString() : ''
+                            })(
+                                <Select>
+                                    <Option value=''>请选择</Option>
+                                    {getEnumsArray(UserEnums.roles).map((data, index) => {
+                                        return (<Option value={data.value} key={index}>{data.text}</Option>);
+                                    })}
                                 </Select>
                             )}
                         </FormItem>
