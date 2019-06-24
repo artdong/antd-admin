@@ -27,10 +27,10 @@ export function getPath(path) {
  */
 export function getPageData(data) {
     return {
-        current: data.page,
+        // current: data.page || 1,
         total: data.total,
-        pageSize: data.pageSize,
-        showSizeChanger: true,
+        pageSize: data.pageSize || 10,
+        showSizeChanger: false,
         showTotal: function(total) {
             return `共有 ${total} 条记录`;
         },

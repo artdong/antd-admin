@@ -10,7 +10,7 @@ import { push } from 'react-router-redux';
 import UserListSearchForm from './../components/form/user_list_search_form.jsx';
 import UserAdd from './../components/form/user_add_form.jsx';
 import UserListTable from './../components/table/user_list_table.jsx';
-import { getQuery, isObjEmpty, getPath, serialize, formatDate } from './../common/tool';
+import { getQuery, isObjEmpty, getPath, serialize, formatDate, getPageData } from './../common/tool';
 import { getUserList, cleanUserList, addUser, updateUser, delUser} from './../actions/user';
 
 function propMap(state, ownProps) {
@@ -141,6 +141,7 @@ class UserList extends Component {
                     dataSource={users.content}
                     handleShowModal={this.handleShowModal}
                     handleDelUser={this.handleDelUser}
+                    pagination={getPageData(users)}
                 />
                 <Modal
                     visible={modalType === 'addUser' ? true : false}

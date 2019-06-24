@@ -174,7 +174,7 @@ export function addUser(query, callback) {
         let userList = users;
         query.key = userList.length;
         query.userId = userList.length + 1;
-        userList.push(query);
+        userList.unshift(query);
         dispatch(updateUserList(userList));
         dispatch(modalUpdate({
             loadingTable: false

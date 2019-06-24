@@ -3,7 +3,7 @@ import {UPDATE_USERLIST, CLEAN_USERLIST} from '../actions/user.js';
 //初始化state
 const INIT_STATE = {
     content: [],
-    page: 1,
+    // page: 1,
     pageSize: 10,
     total: 0
 };
@@ -20,7 +20,7 @@ export default function(state = INIT_STATE, action) {
         });
         return Object.assign({}, state, {
             content
-        });
+        }, { total: content.length});
     case CLEAN_USERLIST:
         return Object.assign({}, INIT_STATE);
     default:
