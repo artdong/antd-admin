@@ -15,10 +15,18 @@ class UserListTable extends Component {
         const { handleShowModal, handleDelUser } = this.props;
         let columns = [
             {
-                title: '用户ID',
-                dataIndex: 'userId',
-                key: 'userId'
+                title: '序号',
+                dataIndex: 'id',
+                key: 'id',
+                render: (text, record, index) => (
+                    <span>{index + 1}</span>
+                )
             },
+            // {
+            //     title: '用户ID',
+            //     dataIndex: 'userId',
+            //     key: 'userId'
+            // },
             {
                 title: '用户昵称',
                 dataIndex: 'userName',
