@@ -8,6 +8,7 @@ let users = [{
     userId: 1,
     userName: '诸葛亮',
     gender: 0,
+    role: 0,
     age: 26,
     tel: 15023712789,
     createTime: '2019-06-16 10:10:10'
@@ -17,6 +18,7 @@ let users = [{
     userId: 2,
     userName: '妲己',
     gender: 1,
+    role: 0,
     age: 17,
     tel: 123456789,
     createTime: '2019-06-16 10:10:10'
@@ -26,6 +28,7 @@ let users = [{
     userId: 3,
     userName: '赵云',
     gender: 0,
+    role: 3,
     age: 23,
     tel: 13523712789,
     createTime: '2019-06-16 10:10:10'
@@ -36,6 +39,7 @@ let users = [{
     userName: '甄姬',
     gender: 1,
     age: 16,
+    role: 0,
     tel: 17723712789,
     createTime: '2019-06-16 10:10:10'
 },
@@ -44,6 +48,7 @@ let users = [{
     userId: 5,
     userName: '张飞',
     gender: 0,
+    role: 4,
     age: 25,
     tel: 19223712789,
     createTime: '2019-06-16 10:10:10'
@@ -53,6 +58,7 @@ let users = [{
     userId: 6,
     userName: '蔡文姬',
     gender: 1,
+    role: 4,
     age: 18,
     tel: 15123712789,
     createTime: '2019-06-16 10:10:10'
@@ -62,6 +68,7 @@ let users = [{
     userId: 7,
     userName: '阿轲',
     gender: 0,
+    role: 3,
     age: 23,
     tel: 111123712789,
     createTime: '2019-06-16 10:10:10'
@@ -71,6 +78,7 @@ let users = [{
     userId: 8,
     userName: '嫦娥',
     gender: 1,
+    role: 3,
     age: 16,
     tel: 11923712789,
     createTime: '2019-06-16 10:10:10'
@@ -80,6 +88,7 @@ let users = [{
     userId: 9,
     userName: '吕布',
     gender: 0,
+    role: 2,
     age: 23,
     tel: 11023712789,
     createTime: '2019-06-16 10:10:10'
@@ -89,6 +98,7 @@ let users = [{
     userId: 10,
     userName: '芈月',
     gender: 1,
+    role: 4,
     age: 19,
     tel: 17923712789,
     createTime: '2019-06-16 10:10:10'
@@ -98,6 +108,7 @@ let users = [{
     userId: 11,
     userName: '凯',
     gender: 0,
+    role: 5,
     age: 23,
     tel: 19923712789,
     createTime: '2019-06-16 10:10:10'
@@ -107,6 +118,7 @@ let users = [{
     userId: 12,
     userName: '公孙离',
     gender: 1,
+    role: 1,
     age: 15,
     tel: 19023712789,
     createTime: '2019-06-16 10:10:10'
@@ -116,6 +128,7 @@ let users = [{
     userId: 13,
     userName: '孙悟空',
     gender: 0,
+    role: 3,
     age: 23,
     tel: 18823712789,
     createTime: '2019-06-16 10:10:10'
@@ -140,9 +153,18 @@ export function getUserList(query) {
             } );
         };
         let condition = query;
+        let createTime = condition.createTime;
+        let createTimeBegin = createTime && createTime[0] ? createTime[0] : '';
+        let createTimeEnd = createTime && createTime[1] ? createTime[1] : '';
         delete condition.pageNum;
         delete condition.page;
-        const userList = filter(condition, users);
+        delete condition.createTime;
+        let userList = filter(condition, users);
+        if(createTimeBegin !== '' && createTimeEnd !== '') {
+            userList = userList.filter(item => {
+                return Date.parse(item.createTime.replace(/-/g, '/')) >= createTimeBegin && Date.parse(item.createTime.replace(/-/g, '/')) <= createTimeEnd;
+            });
+        }
  
         dispatch(updateUserList(userList));
         dispatch(modalUpdate({
