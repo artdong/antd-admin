@@ -8,6 +8,7 @@ import { Table, Divider } from 'antd';
 import UserEnums from '../../enums/user';
 
 class UserListTable extends Component {
+    // eslint-disable-next-line
     constructor(props) {
         super(props);
     }
@@ -66,7 +67,7 @@ class UserListTable extends Component {
             {
                 title: '操作',
                 key: 'action',
-                render: (text, record) => (
+                render: (_text, record) => (
                     <span>
                         <a href="javascript:;" onClick={()=>{handleShowModal('editUser', record);}}>编辑 {record.name}</a>
                         <Divider type="vertical" />
