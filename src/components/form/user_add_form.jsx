@@ -42,7 +42,7 @@ class UserAdd extends Component {
                                             required: true, 
                                             message: '用户Id不能为空！'
                                         }],
-                                        initialValue: userInfo && userInfo.userId || ''
+                                        initialValue: (userInfo && userInfo.userId) || ''
                                     })(
                                         <Input disabled/>
                                     )}
@@ -62,7 +62,7 @@ class UserAdd extends Component {
                                     required: true, 
                                     message: '昵称不能为空！'
                                 }],
-                                initialValue: userInfo && userInfo.userName || ''
+                                initialValue: (userInfo && userInfo.userName) || ''
                             })(
                                 <Input/>
                             )}
@@ -94,7 +94,7 @@ class UserAdd extends Component {
                             {...formItemLayout}
                         >
                             {getFieldDecorator('role', {
-                                initialValue: userInfo && userInfo.role >= 0 ? userInfo.role.toString() : ''
+                                initialValue: (userInfo && userInfo.role) >= 0 ? userInfo.role.toString() : ''
                             })(
                                 <Select>
                                     <Option value=''>请选择</Option>
@@ -113,7 +113,7 @@ class UserAdd extends Component {
                             {...formItemLayout}
                         >
                             {getFieldDecorator('age', {
-                                initialValue: userInfo && userInfo.age || 0
+                                initialValue: (userInfo && userInfo.age) || 0
                             })(
                                 <InputNumber min={0} max={150} className="wd-ten-percent"/>
                             )}
@@ -127,7 +127,7 @@ class UserAdd extends Component {
                             {...formItemLayout}
                         >
                             {getFieldDecorator('tel', {
-                                initialValue: userInfo && userInfo.tel || ''
+                                initialValue: (userInfo && userInfo.tel) || ''
                             })(
                                 <Input/>
                             )}
