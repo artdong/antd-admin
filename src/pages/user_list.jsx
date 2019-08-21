@@ -119,7 +119,13 @@ class UserList extends Component {
                 this.handleGetList();
             }); 
         };
-        dispatch(delUser(params, callback));
+        Modal.confirm({
+            title: '删除确认',
+            content: '确认要删除吗?',
+            onOk: () => {
+                dispatch(delUser(params, callback));
+            }
+        });
     }
 
     render() {
