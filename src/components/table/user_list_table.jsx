@@ -69,9 +69,9 @@ class UserListTable extends Component {
                 key: 'action',
                 render: (_text, record) => (
                     <span>
-                        <a href="javascript:;" onClick={()=>{handleShowModal('editUser', record);}}>编辑 {record.name}</a>
+                        <a href="javacript:void(0);" rel="noopener noreferrer" onClick={()=>{handleShowModal('editUser', record);}}>编辑 {record.name}</a>
                         <Divider type="vertical" />
-                        <a href="javascript:;" onClick={()=>{handleDelUser(record);}}>删除</a>
+                        <a href="javacript:void(0);" rel="noopener noreferrer" onClick={()=>{handleDelUser(record);}}>删除</a>
                     </span>
                 ),
             }
