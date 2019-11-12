@@ -14,6 +14,7 @@ import Layout from './pages/layout.jsx'; //PC框架
 import NotFound from './pages/not_found.jsx'; //404
 import Demo from './pages/demo.jsx';
 import User from './pages/user_list.jsx';
+import CustomTableList from './pages/custom_table_list.jsx';
 
 export default (
     <LocaleProvider locale={zh_CN}>
@@ -23,6 +24,7 @@ export default (
                     <IndexRoute component={NotFound} />
                     <Route path="demo" component={Demo} />
                     <Route path="user" component={User} />
+                    <Route path="custom-list" component={CustomTableList} />
                     <Route path="*" component={NotFound} />
                 </Route>
             </Router>
