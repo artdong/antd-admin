@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Button, Row } from 'antd';
 
 import Child1 from './../components/view/child_1.jsx';
+import Child2 from './../components/view/child_2.jsx';
 
 // 父组件
 export default class Parent extends Component {
@@ -29,6 +30,7 @@ export default class Parent extends Component {
                 <p>I am {name}</p>
                 <p>正在操作的子组件名称：{this.child && this.child.state.name || ''}</p>
                 <Child1 triggerRef={this.bindRef} parentName={name}/>
+                <Child2 parentName={name}/>
                 <Row className="m-t">
                     <Button type="primary" onClick={this.btnClick} >调用子组件1的方法</Button>
                 </Row>

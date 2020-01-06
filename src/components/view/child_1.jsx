@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+// import {EventEmitter2} from 'eventemitter2';
+// const emitter = new EventEmitter2();
+
+import emitter from '../../services/event';
+import emitter2 from '../../services/event2';
+
 //子组件
 class Child1 extends Component {
     constructor(props) {
@@ -10,9 +16,20 @@ class Child1 extends Component {
             parentName: props.parentName
         };
         this.props.triggerRef(this);
+        this.changeName = this.changeName.bind(this);
+        
+        emitter2.on('changeFirstName', this.changeName);
     }
 
     componentDidMount() {
+        // this.eventEmitter = emitter.addListener('changeFirstName', (msg) => {
+        //     global.console.log(msg);
+        //     this.changeName(msg);
+        // });
+    }
+
+    componentWillUnmount() {
+        emitter.removeListener(this.eventEmitter);
     }
 
     // 这是子组件的方法
