@@ -181,7 +181,7 @@ class UserList extends Component {
         
         return (
             <Spin spinning={loadingForm}>
-                <Row>
+                <div className="text-center">
                     <OrgTree
                         data={data}
                         horizontal={horizontal}
@@ -192,7 +192,7 @@ class UserList extends Component {
                         }}
                     >
                     </OrgTree>
-                </Row>
+                </div>
                 <Row className="m-b">
                     <Col span={24}>
                         <h1 className="pull-left">英雄列表</h1>

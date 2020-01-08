@@ -21,7 +21,7 @@ class OrgTree extends Component {
     render() {
         const { horizontal, collapsable, node } = this.props;
         return <div className="org-tree-container">
-            <div className={classnames({
+            <div className={classnames('org-tree', {
                 'horizontal': horizontal,
                 'collapsable': collapsable
             })}>
