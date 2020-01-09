@@ -32,20 +32,18 @@ export const renderNode = (data, prop) => {
   
 // 创建展开折叠按钮
 export const renderBtn = (data, prop ) => {
-    // const { listeners } = prop;
-    // const expandHandler = listeners['on-expand'];
-  
+    const { onExpand } = prop;
+    const node = prop.node;
+
     let cls = ['org-tree-node-btn'];
   
-    if (data[prop.expand]) {
+    if (data[node.expand]) {
         cls.push('expanded');
     }
   
     return React.createElement('span', {
         className: cls.join(' '),
-        // on: {
-        //     click: e => expandHandler && expandHandler(e, data)
-        // }
+        onClick: (e) => typeof onExpand === 'function' && onExpand(e, data)
     });
 };
   

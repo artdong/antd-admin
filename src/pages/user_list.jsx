@@ -14,6 +14,7 @@ import { getQuery, isObjEmpty, getPath, serialize, formatDate, getPageData } fro
 import { getUserList, cleanUserList, addUser, updateUser, delUser} from './../actions/user';
 
 import OrgTree from './../components/common/org_tree.jsx';
+// import OrgTree from 'react-org-tree';
 
 function propMap(state, ownProps) {
     return {
@@ -32,11 +33,9 @@ class UserList extends Component {
             data: {
                 id: 0,
                 label: 'XXX科技有限公司',
-                expand: 'expand',
                 children: [{
                     id: 2,
                     label: '产品研发部',
-                    expand: 'expand',
                     children: [{
                         id: 5,
                         label: '研发-前端'
@@ -53,7 +52,6 @@ class UserList extends Component {
                 }, {
                     id: 3,
                     label: '销售部',
-                    expand: 'expand',
                     children: [{
                         id: 7,
                         label: '销售一部'
@@ -69,8 +67,8 @@ class UserList extends Component {
                     label: 'HR人事'
                 }]
             },
-            horizontal: false,
-            collapsable: false,
+            horizontal: true,
+            collapsable: true,
             expandAll: true,
             labelClassName: 'bg-white'
         };
@@ -177,7 +175,7 @@ class UserList extends Component {
     render() {
         const { routing, modal, users } = this.props;
         const { loadingForm } = modal;
-        const { modalType, curUser, data, horizontal, collapsable, labelClassName } = this.state;
+        const { modalType, curUser, data, horizontal, collapsable, expandAll, labelClassName } = this.state;
         
         return (
             <Spin spinning={loadingForm}>
@@ -187,6 +185,7 @@ class UserList extends Component {
                         horizontal={horizontal}
                         collapsable={collapsable}
                         labelClassName={labelClassName}
+                        expandAll={expandAll}
                         renderContent={(data) => {
                             return data.label;
                         }}
