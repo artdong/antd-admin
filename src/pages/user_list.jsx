@@ -35,7 +35,6 @@ class UserList extends Component {
         this.handleAddUser = this.handleAddUser.bind(this);
         this.handleUpdateUser = this.handleUpdateUser.bind(this);
         this.handleDelUser = this.handleDelUser.bind(this);
-        // this.handleTableChange = this.handleTableChange.bind(this);
     }
 
     componentDidMount() {
@@ -132,6 +131,7 @@ class UserList extends Component {
         const { routing, modal, users } = this.props;
         const { loadingForm } = modal;
         const { modalType, curUser } = this.state;
+        
         return (
             <Spin spinning={loadingForm}>
                 <Row className="m-b">
