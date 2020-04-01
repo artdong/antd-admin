@@ -16,6 +16,7 @@ import Demo from './pages/demo.jsx';
 import User from './pages/user_list.jsx';
 import CustomTableList from './pages/custom_table_list.jsx';
 import Parent from './pages/parent.jsx';
+import OrgTreeDemo from './pages/org_tree.jsx';
 
 export default (
     <LocaleProvider locale={zh_CN}>
@@ -27,6 +28,7 @@ export default (
                     <Route path="user" component={User} />
                     <Route path="custom-list" component={CustomTableList} />
                     <Route path="parent" component={Parent} />
+                    <Route path="org-tree" component={OrgTreeDemo} />
                     <Route path="*" component={NotFound} />
                 </Route>
             </Router>
