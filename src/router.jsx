@@ -8,7 +8,7 @@ import {store, history} from './store';
 // 国际化
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import 'moment/locale/zh-cn';
-import { LocaleProvider } from 'antd';
+import { ConfigProvider } from 'antd';
 
 import Layout from './pages/layout.jsx'; //PC框架
 import NotFound from './pages/not_found.jsx'; //404
@@ -19,7 +19,7 @@ import Parent from './pages/parent.jsx';
 import OrgTreeDemo from './pages/org_tree.jsx';
 
 export default (
-    <LocaleProvider locale={zh_CN}>
+    <ConfigProvider locale={zh_CN}>
         <Provider store={store}>
             <Router history={history}>
                 <Route path="client" component={Layout}>
@@ -33,5 +33,5 @@ export default (
                 </Route>
             </Router>
         </Provider>
-    </LocaleProvider>
+    </ConfigProvider>
 );
