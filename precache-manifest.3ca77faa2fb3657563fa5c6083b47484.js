@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/antd-admin/static/css/2.aba6d9aa.chunk.css"
   },
   {
-    "revision": "0837b2e44f4bc3716c8b8e3d311c41ea",
+    "revision": "f6afe717e5a4acb5ee81cb46da57edef",
     "url": "/antd-admin/index.html"
   }
 ];
