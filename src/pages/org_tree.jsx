@@ -60,6 +60,10 @@ class OrgTreeDemo extends Component {
                     renderContent={(data) => {
                         return data.label;
                     }}
+                    onClick={(e, data) => {
+                        global.console.log('-----nodeName-----', e.target.innerText);
+                        global.console.log('-----data-----', data);
+                    }}
                 >
                 </OrgTree>
             </div>
