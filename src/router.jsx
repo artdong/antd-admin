@@ -11,7 +11,7 @@ import 'moment/locale/zh-cn';
 import { ConfigProvider } from 'antd';
 
 import Layout from './pages/layout.jsx'; //PC框架
-import NotFound from './pages/not_found.jsx'; //404
+// import NotFound from './pages/not_found.jsx'; //404
 import Demo from './pages/demo.jsx';
 import User from './pages/user_list.jsx';
 import CustomTableList from './pages/custom_table_list.jsx';
@@ -28,7 +28,6 @@ export default (
                     <Route path="/custom-list" component={CustomTableList} />
                     <Route path="/parent" component={Parent} />
                     <Route path="/org-tree" component={OrgTreeDemo} />
-                    <Route path="/*" component={NotFound} />
                 </Route>
             </HashRouter>
         </Provider>
