@@ -1,9 +1,9 @@
 //加载依赖
 import React from 'react';
 import {Provider} from 'react-redux';
-import { Router, Route, IndexRoute } from 'react-router';
+import { HashRouter, Route } from 'react-router-dom';
 
-import {store, history} from './store';
+import {store} from './store';
 
 // 国际化
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
@@ -21,17 +21,16 @@ import OrgTreeDemo from './pages/org_tree.jsx';
 export default (
     <ConfigProvider locale={zh_CN}>
         <Provider store={store}>
-            <Router history={history}>
-                <Route path="client" component={Layout}>
-                    <IndexRoute component={NotFound} />
-                    <Route path="demo" component={Demo} />
-                    <Route path="user" component={User} />
-                    <Route path="custom-list" component={CustomTableList} />
-                    <Route path="parent" component={Parent} />
-                    <Route path="org-tree" component={OrgTreeDemo} />
-                    <Route path="*" component={NotFound} />
+            <HashRouter>
+                <Route path="/" component={Layout}>
+                    <Route path="/demo" component={Demo} />
+                    <Route path="/user" component={User} />
+                    <Route path="/custom-list" component={CustomTableList} />
+                    <Route path="/parent" component={Parent} />
+                    <Route path="/org-tree" component={OrgTreeDemo} />
+                    <Route path="/*" component={NotFound} />
                 </Route>
-            </Router>
+            </HashRouter>
         </Provider>
     </ConfigProvider>
 );
