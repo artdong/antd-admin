@@ -28,7 +28,7 @@ export default class Parent extends Component {
         return(
             <div>
                 <p>I am {name}</p>
-                <p>正在操作的子组件名称：{this.child && this.child.state.name || ''}</p>
+                <p>正在操作的子组件名称：{this.child.state.name || ''}</p>
                 <Child1 triggerRef={this.bindRef} parentName={name}/>
                 <Child2 parentName={name}/>
                 <Row className="m-t">
